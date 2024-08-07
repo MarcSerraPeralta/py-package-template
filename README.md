@@ -3,10 +3,14 @@ Template for creating a python package repository
 
 ## Setting up the git workflow
 
+### Cloning the repo
+
 ```
 git clone ssh://git@git.example.com/project/repo
 cd repo
+# create detached HEAD with no files on the directory (cleaner structure)
 git checkout $(git commit-tree $(git hash-object -t tree /dev/null) < /dev/null)
+# create new worktree corresponding to the `main` branch
 git worktree add main main
 ```
 
@@ -16,3 +20,14 @@ Best way I found to work with worktrees is described in [this ref](https://stack
 which corresponds:
 * not using `--bare` due to the problems with `git fetch` and `git pull`
 * removing everything in the repository in a detached HEAD (with `git checkout $(git commit-tree $(git hash-object -t tree /dev/null) < /dev/null)`) so that in the `repo` directory there are only the worktree directories (so it is cleaner)
+
+### Creating new worktrees
+
+```
+git worktree add new-branch-name
+cd new-branch-name
+git merge main --allow-unrelated-histories
+```
+
+The last command (`git merge main --allow-unrelated-histories`) is required to populate the new worktree directory (remember that by default the `repo` directory is an empty detached HEAD). 
+The option `--allow-unrelated-histories` is required because the detached head and `main` have no common previous commit so git would throw an error. 
