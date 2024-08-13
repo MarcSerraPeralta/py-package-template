@@ -43,6 +43,8 @@ The option `--allow-unrelated-histories` is required because the detached head a
 
 Allow only `squash merging` for the PR requests. This can be done in `Settings > General > Pull Requests` by unselecting all the options except the `Allow squash merging`. 
 
+It is useful to set up the `Default commit message` to be the `Pull request title`.
+
 ## Publishing the package to PyPI
 
 (improve this section)
