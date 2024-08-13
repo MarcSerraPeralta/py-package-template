@@ -39,6 +39,10 @@ git merge main --allow-unrelated-histories
 The last command (`git merge main --allow-unrelated-histories`) is required to populate the new worktree directory (remember that by default the `repo` directory is an empty detached HEAD). 
 The option `--allow-unrelated-histories` is required because the detached head and `main` have no common previous commit so git would throw an error. 
 
+### Setting up PR requests
+
+Allow only `squash merging` for the PR requests. This can be done in `Settings > General > Pull Requests` by unselecting all the options except the `Allow squash merging`. 
+
 ## Publishing the package to PyPI
 
 (improve this section)
