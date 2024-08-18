@@ -45,6 +45,20 @@ Allow only `squash merging` for the PR requests. This can be done in `Settings >
 
 It is useful to set up the `Default commit message` to be the `Pull request title`.
 
+
+## Managing the requirements for the python package
+
+The `pyproject.toml` file shouldn't have strict requirements (i.e. specific versions pinned) unless there is a known bug in the current version of the libraries used. In this repo there is an example of `pyproject.toml`. 
+
+The specific versions should be pinned in the `requirements.txt` and the `requirements-dev.txt`. This can be done using `pip-tools` and the following commands:
+
+```
+# pip install pip-tools
+pip-compile -o requirements.txt pyproject.toml
+pip-compile --extra dev -o dev-requirements.txt pyproject.toml
+```
+
+
 ## Publishing the package to PyPI
 
 (improve this section)
