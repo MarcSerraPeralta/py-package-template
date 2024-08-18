@@ -61,9 +61,56 @@ pip-compile --extra dev -o dev-requirements.txt pyproject.toml
 
 ## Publishing the package to PyPI
 
-(improve this section)
+The steps to perform are ([ref](https://packaging.python.org/en/latest/tutorials/packaging-projects/)):
+1. Build the package
+1. Use TestPyPI to test the release
+1. Relase package in PyPI
+1. Add tag and release in GitHub
 
-Key points:
-* Add tag in GitHub
-* TestPyPI
-* PyPI
+### Build the package
+
+```
+pip install --upgrade pip build
+python -m build
+```
+This should output a lot of text and once completed should generate two files in the `dist/` directory. The `.tar.gz` file is a source distribution whereas the `.whl` file is a built distribution. 
+
+### Test the release in TestPyPI
+
+To securely upload your project, you’ll need a PyPI API token. Create one [here](https://test.pypi.org/manage/account/#api-tokens), setting the “Scope” to “Entire account”.
+
+```
+pip install --upgrade twine
+python -m twine upload --repository testpypi dist/*
+```
+
+You will be prompted for a username and password. For the username, use `__token__`. For the password, use the token value, including the `pypi-` prefix.
+Once uploaded, your package should be viewable on TestPyPI; for example: `https://test.pypi.org/project/example_package_YOUR_USERNAME_HERE`.
+
+To check that the installation works, run the following commands:
+
+```
+pip install --upgrade virtualenv
+virtualenv venv/
+source ./venv/bin/activate
+pip install --index-url https://test.pypi.org/simple/ --no-deps example-package-YOUR-USERNAME-HERE
+python -c "import example-package-YOUR-USERNAME-HERE"
+deactivate
+rm -r venv/
+```
+
+### Release in PyPI
+
+If the package has been released correctly to TestPyPI, it can be released to PyPI using:
+
+```
+python -m twine upload dist/*
+```
+
+### Add tag and release in GitHub
+
+To add a tag (e.g. `v0.1.0`), run:
+```
+git tag <tagname>
+git push origin --tags
+```
