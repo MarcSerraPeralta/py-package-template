@@ -104,6 +104,7 @@ rm -r venv/
 If the package has been released correctly to TestPyPI, it can be released to PyPI using:
 
 ```
+# (activate the previous virtual environment)
 python -m twine upload dist/*
 ```
 
