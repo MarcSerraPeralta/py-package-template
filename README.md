@@ -55,7 +55,7 @@ The specific versions should be pinned in the `requirements.txt` and the `requir
 ```
 # pip install pip-tools
 pip-compile -o requirements.txt pyproject.toml
-pip-compile --extra dev -o dev-requirements.txt pyproject.toml
+pip-compile --extra dev -o requirements_dev.txt pyproject.toml
 ```
 
 
