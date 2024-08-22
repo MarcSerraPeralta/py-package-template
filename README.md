@@ -129,3 +129,5 @@ These can be added in `Settings > Secrets and variables > Actions > New reposito
 The information stored in these keys can be obtained from the following two steps. 
 Firstly, run `ssh-keyscan github.com` and search for the line that resembles `github.com ssh-rsa [KEY]`, `github.com ssh-ed25519 [KEY]`, or any other ssh key. Copy this line and store it in the secret `KNOWN_HOSTS`. 
 Secondly, copy the data in `~/.shh/id_rsa`, `~/.ssh/id_ed25519` or the corresponding file as the one from the previous step and paste it in the secret `SSH_PRIVATE_KEY`. 
+
+Note that one needs to update `.github/workflows/actions.yaml` so that it knows which ssh encription to use, currently set up to `id_ed25519`. 
