@@ -131,3 +131,16 @@ Firstly, run `ssh-keyscan github.com` and search for the line that resembles `gi
 Secondly, copy the data in `~/.shh/id_rsa`, `~/.ssh/id_ed25519` or the corresponding file as the one from the previous step and paste it in the secret `SSH_PRIVATE_KEY`. 
 
 Note that one needs to update `.github/workflows/actions.yaml` so that it knows which ssh encription to use, currently set up to `id_ed25519`. 
+
+## Badges in `README.md`
+
+```
+[![Documentation Status](https://readthedocs.org/projects/PACKAGE_NAME/badge/?version=latest)](https://PACKAGE_NAME.readthedocs.io/en/latest/?badge=latest)
+![example workflow](https://github.com/MarcSerraPeralta/PACKAGE_NAME/actions/workflows/actions.yaml/badge.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![PyPI](https://img.shields.io/pypi/v/PACKAGE_NAME?label=pypi%20package)
+```
+
+## Documentation hosted using ReadTheDocs
+
+...
