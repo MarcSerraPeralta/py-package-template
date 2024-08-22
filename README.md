@@ -115,3 +115,17 @@ To add a tag (e.g. `v0.1.0`), run:
 git tag <tagname>
 git push origin --tags
 ```
+
+## GitHub actions for CI/CD pipeline
+
+GitHub has (limited) free runners to run the CI pipeline for the repository. 
+This can be achieved by setting up a YAML file in the folder `.github/workflows`, see `.github/workflows/actions.yaml`.
+The current file sets up an SSH key so that the runner can clone repos that are not published in PyPI.
+However, for it to work, one needs to set up two repository secrets. 
+These can be added in `Settings > Secrets and variables > Actions > New repository secret` and create the following keys:
+* `SSH_PRIVATE_KEY`
+* `KNOWN_HOSTS`
+
+The information stored in these keys can be obtained from the following two steps. 
+Firstly, run `ssh-keyscan github.com` and search for the line that resembles `github.com ssh-rsa [KEY]`, `github.com ssh-ed25519 [KEY]`, or any other ssh key. Copy this line and store it in the secret `KNOWN_HOSTS`. 
+Secondly, copy the data in `~/.shh/id_rsa`, `~/.ssh/id_ed25519` or the corresponding file as the one from the previous step and paste it in the secret `SSH_PRIVATE_KEY`. 
