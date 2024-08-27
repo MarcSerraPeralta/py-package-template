@@ -17,7 +17,7 @@ def test_tests():
             if file[-3:] != ".py" or file[0] == "_":
                 continue
 
-            # change root dir from "iq_readout" to test_dir
+            # change root dir to test_dir
             relpath = os.path.relpath(path, mod_dir)
             testpath = os.path.join(test_dir, relpath)
             if file not in FILE_EXCEPTIONS:
