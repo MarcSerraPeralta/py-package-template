@@ -23,6 +23,6 @@ def test_tests():
             if file not in FILE_EXCEPTIONS:
                 if not os.path.exists(os.path.join(testpath, "test_" + file)):
                     raise ValueError(
-                        f"test file for {os.path.join(mod_dir, file)}" " does not exist"
+                        f"test file for {os.path.join(relpath, file)}" " does not exist"
                     )
     return
