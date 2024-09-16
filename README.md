@@ -62,10 +62,15 @@ pip-compile --extra dev -o requirements_dev.txt pyproject.toml
 ## Publishing the package to PyPI
 
 The steps to perform are ([ref](https://packaging.python.org/en/latest/tutorials/packaging-projects/)):
+1. Update the version number
 1. Build the package
 1. Use TestPyPI to test the release
 1. Relase package in PyPI
 1. Add tag and release in GitHub
+
+### Update the version number
+
+Usually the version numbers can be found in the base `__ini__.py` and `pyproject.toml` files.
 
 ### Build the package
 
