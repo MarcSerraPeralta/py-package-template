@@ -90,7 +90,7 @@ To securely upload your project, you’ll need a PyPI API token. Create one [her
 
 ```
 pip install --upgrade twine
-python -m twine upload --repository testpypi dist/NAME_OF_THE_NEW_VERSION
+python -m twine upload --skip-existing --repository testpypi dist/*
 ```
 
 You will be prompted for a username and password. For the username, use `__token__`. For the password, use the token value, including the `pypi-` prefix.
@@ -115,7 +115,7 @@ If the package has been released correctly to TestPyPI, it can be released to Py
 
 ```
 # (activate the initial virtual environment where we already have twine installed)
-python -m twine upload dist/NAME_OF_THE_NEW_VERSION
+python -m twine upload --skip-existing dist/*
 ```
 
 ### Add tag and release in GitHub
