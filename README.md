@@ -74,6 +74,8 @@ Usually the version numbers can be found in the base `__ini__.py` and `pyproject
 
 Run `grep -R "version"` to get all the instances of `version`.
 
+Remember to run `git pull` on `main` to get all the latest changes before building the package!
+
 ### Build the package
 
 ```
