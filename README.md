@@ -103,6 +103,7 @@ pip install --upgrade virtualenv
 virtualenv venv/
 source ./venv/bin/activate
 pip install --index-url https://test.pypi.org/simple/ --no-deps example-package-YOUR-USERNAME-HERE
+pip install -r requirements.txt
 python -c "import example-package-YOUR-USERNAME-HERE"
 deactivate
 rm -r venv/
