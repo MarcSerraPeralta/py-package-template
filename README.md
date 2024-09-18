@@ -126,6 +126,8 @@ git tag <tagname>
 git push origin --tags
 ```
 
+In the "tags" tab in GitHub, click on the defined tag and then click on `Create release from tag`. To generate automatic notes, click on `Generate release notes`. 
+
 ## GitHub actions for CI/CD pipeline
 
 GitHub has (limited) free runners to run the CI pipeline for the repository. 
