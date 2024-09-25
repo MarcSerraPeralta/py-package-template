@@ -146,6 +146,7 @@ Note that one needs to update `.github/workflows/actions.yaml` so that it knows 
 
 ## Badges in `README.md`
 
+Copy the lines below and change `PACKAGE_NAME` to the correct package name. 
 ```
 [![Documentation Status](https://readthedocs.org/projects/PACKAGE_NAME/badge/?version=latest)](https://PACKAGE_NAME.readthedocs.io/en/latest/?badge=latest)
 ![example workflow](https://github.com/MarcSerraPeralta/PACKAGE_NAME/actions/workflows/actions.yaml/badge.svg)
