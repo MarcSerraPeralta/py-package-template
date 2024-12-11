@@ -131,7 +131,7 @@ In the "tags" tab in GitHub, click on the defined tag and then click on `Create 
 ## GitHub actions for CI/CD pipeline
 
 GitHub has (limited) free runners to run the CI pipeline for the repository. 
-This can be achieved by setting up a YAML file in the folder `.github/workflows`, see `.github/workflows/actions.yaml`.
+This can be achieved by setting up a YAML file in the folder `.github/workflows`, see `.github/workflows/ci_pipeline.yaml`.
 The current file sets up an SSH key so that the runner can clone repos that are not published in PyPI.
 However, for it to work, one needs to set up two repository secrets. 
 These can be added in `Settings > Secrets and variables > Actions > New repository secret` and create the following keys:
@@ -142,14 +142,14 @@ The information stored in these keys can be obtained from the following two step
 Firstly, run `ssh-keyscan github.com` and search for the line that resembles `github.com ssh-rsa [KEY]`, `github.com ssh-ed25519 [KEY]`, or any other ssh key. Copy this line and store it in the secret `KNOWN_HOSTS`. 
 Secondly, copy the data in `~/.shh/id_rsa`, `~/.ssh/id_ed25519` or the corresponding file as the one from the previous step and paste it in the secret `SSH_PRIVATE_KEY`. 
 
-Note that one needs to update `.github/workflows/actions.yaml` so that it knows which ssh encription to use, currently set up to `id_ed25519`. 
+Note that one needs to update `.github/workflows/ci_pipeline.yaml` so that it knows which ssh encription to use, currently set up to `id_ed25519`. 
 
 ## Badges in `README.md`
 
 Copy the lines below and change `PACKAGE_NAME` to the correct package name. 
 ```
 [![Documentation Status](https://readthedocs.org/projects/PACKAGE_NAME/badge/?version=latest)](https://PACKAGE_NAME.readthedocs.io/en/latest/?badge=latest)
-![example workflow](https://github.com/MarcSerraPeralta/PACKAGE_NAME/actions/workflows/actions.yaml/badge.svg)
+![example workflow](https://github.com/MarcSerraPeralta/PACKAGE_NAME/actions/workflows/ci_pipeline.yaml/badge.svg)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![PyPI](https://img.shields.io/pypi/v/PACKAGE_NAME?label=pypi%20package)
 ```
