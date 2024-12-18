@@ -28,4 +28,15 @@ include = ["PACKAGE_NAME_DIR", "PACKAGE_NAME_DIR.*"]  # package names should mat
 namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 
 [project.optional-dependencies]
-dev = ["pip-tools", "pytest", "scalene", "black", "sphinx", "sphinx-rtd-theme", "pytest-black"]
+dev = [
+    "pip-tools", 
+    "pytest", 
+    "scalene", 
+    "black", 
+    "sphinx", 
+    "sphinx-rtd-theme", 
+    "pytest-black", 
+    "flake8", 
+    "flake8-print", 
+    "pytest-flake8",
+]
