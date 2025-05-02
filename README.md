@@ -3,17 +3,17 @@
 Template for creating a python package repository. 
 
 ##### Table of Contents  
-- [Setting up the git workflow](#git-workflow)  
+- [Setting up the git worktrees](#git-worktrees)  
   - [Cloning the repo](#cloning-repo)  
   - [Creating new worktrees](#new-worktrees)
-  - [Setting up PR configuration](#pr-configuration)
+- [Setting up PR configuration](#pr-configuration)
 - [Managing the requirements for the python package](#managing-requirements)
 - [Publishing the package to PyPI](#publish-pypi)
 - [GitHub actions for CI/CD pipeline](#ci-pipeline)
 - [Badges in `README.md`](#readme-badges)
 
 
-## Setting up the git workflow <a name="git-workflow"/>
+## Setting up the git worktrees <a name="git-worktrees"/>
 
 ### Cloning the repo <a name="cloning-repo"/>
 
@@ -49,12 +49,37 @@ The last command (`git merge main --allow-unrelated-histories`) is required to p
 The option `--allow-unrelated-histories` is required because the detached head and `main` have no common previous commit so git would throw an error. 
 
 
-### Setting up PR configuration <a name="pr-configuration"/>
+## Setting up PR configuration <a name="pr-configuration"/>
 
-Allow only `squash merging` for the PR requests. This can be done in `Settings > General > Pull Requests` by unselecting all the options except the `Allow squash merging`. 
+Note that all rules for the same branch described below can be merged into a single rule. 
 
-It is useful to set up the `Default commit message` to be the `Pull request title`.
+### Squash merging <a name="squash-merging"/>
 
+Allow only `squash merging` for the PR. This can be done in `Settings > General > Pull Requests` by unselecting all the options except the `Allow squash merging`. 
+The reason is that PRs should be small and thus there is no need to do a merging as it will lead to more commits to the main branch (with probably worse commit messages). 
+In this sense, it is useful to set up the `Default commit message` to be the `Pull request title`.
+
+### Require PR to merge to main branch
+
+Go to `Settings > Code and automation > Rules > Rulesets` and create a new rule. In the configuration menu for this new rule, under `Rules > Branch rules`, select `Require a pull request before merging`. It is recommended to also select (in the advanced options): 
+1. `Dismiss stale pull request approvals when new commits are pushed`
+2. `Require review from Code Owners`
+3. `Require conversation resolution before merging`
+4. `Allowed merge methods > Squash` (see [Squash merging](#squash-merging))
+Then, under `Targets > Target branches` in the configuration meny for this new rule, select `Add target > Include default branch`. 
+
+### PR checks
+
+If a GitHub action is set (see [GitHub actions for CI/CD pipeline](#ci-pipeline)), one can make it a check for a PR, meaning that the action must succeed before being able to merge the PR. 
+This is useful for CI pipelines when merging to the main branch. 
+To set this up, one must have specified a name for the build job in the GitHub action, which is done in the corresponding YAML file (e.g. `.github/workflows/action.yaml`):
+```
+name: ... # name of the GitHub action
+jobs:
+  build:
+    name: ... # name of the build job of this GitHub action
+```
+Then, go to `Settings > Code and automation > Rules > Rulesets` and create a new rule. In the configuration menu for this new rule, under `Rules > Branch rules`, select `Require status checks to pass` and open `Show additional settings`. Select `+ Add checks` and write the (full) name of the build job and select the first item in the dropdown menu. This should lead to the addition of the check with the logo of GitHub and a text saying `GitHub Actions` next to it. Finally, fill the other options of the rule and save it. 
 
 ## Managing the requirements for the python package <a name="managing-requirements"/>
 
