@@ -103,7 +103,7 @@ The steps to perform are ([ref](https://packaging.python.org/en/latest/tutorials
 1. Relase package in PyPI
 1. Add tag and release in GitHub
 
-### Update the version number
+### 1. Update the version number
 
 Usually the version numbers can be found in the base `__ini__.py` and `pyproject.toml` files.
 
@@ -111,7 +111,7 @@ Run `grep -R "version"` to get all the instances of `version`.
 
 Remember to run `git pull` on `main` to get all the latest changes before building the package!
 
-### Build the package
+### 2. Build the package
 
 ```
 pip install --upgrade pip build
@@ -119,7 +119,7 @@ python -m build
 ```
 This should output a lot of text and once completed should generate two files in the `dist/` directory. The `.tar.gz` file is a source distribution whereas the `.whl` file is a built distribution. 
 
-### Test the release in TestPyPI
+### 3. Test the release in TestPyPI
 
 To securely upload your project, you’ll need a PyPI API token. Create one [here](https://test.pypi.org/manage/account/#api-tokens), setting the “Scope” to “Entire account”.
 
@@ -144,7 +144,7 @@ deactivate
 rm -r venv/
 ```
 
-### Release in PyPI
+### 4. Release in PyPI
 
 If the package has been released correctly to TestPyPI, it can be released to PyPI using:
 
@@ -153,7 +153,7 @@ If the package has been released correctly to TestPyPI, it can be released to Py
 python -m twine upload --skip-existing dist/*
 ```
 
-### Add tag and release in GitHub
+### 5. Add tag and release in GitHub
 
 To add a tag (e.g. `v0.1.0`), run:
 ```
