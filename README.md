@@ -107,7 +107,11 @@ The steps to perform are ([ref](https://packaging.python.org/en/latest/tutorials
 
 Usually the version numbers can be found in the base `__ini__.py` and `pyproject.toml` files.
 
-Run `grep -R "version"` to get all the instances of `version`.
+Run 
+```
+grep -R "version"
+```
+to get all the instances of `version`.
 
 Remember to run `git pull` on `main` to get all the latest changes before building the package!
 
