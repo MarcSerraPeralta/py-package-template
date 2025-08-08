@@ -105,11 +105,11 @@ The steps to perform are ([ref](https://packaging.python.org/en/latest/tutorials
 
 ### 1. Update the version number
 
-Usually the version numbers can be found in the base `__ini__.py` and `pyproject.toml` files.
+Usually the version numbers can be found in the base `__ini__.py` and `pyproject.toml` files. If there is Sphinx documentation, there can also be a "release" number (which correspond to the version) in `docs/conf.py`. 
 
-Run 
+For example, if the current version is `0.9.1`, run 
 ```
-grep -R "version"
+grep -R "0.9.1"
 ```
 to get all the instances of `version`.
 
