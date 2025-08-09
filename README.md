@@ -197,4 +197,13 @@ Copy the lines below and change `PACKAGE_NAME` to the correct package name.
 
 ## Documentation hosted using ReadTheDocs
 
-...
+The documentation can be hosted in [ReadTheDocs](https://www.readthedocs.org/) for free if the projects are public. It is very simple to create a new documentation website: just click "Add project" and then follow the steps. In this repo, there is a setup example for documentation with Sphinx in `docs/`. 
+
+Before publishing the documentation in ReadTheDocs, it is recommended to build it locally to check for bugs or warnings. To compile the documentation locally, run 
+```
+make html
+```
+inside `docs/` (note that here we are assuming that you have copied the `make.bat` and `Makefile` files from this repo. The first compilation can take some time. 
+Then, just open one of the generated HTML files and check that the documentation looks correct locally. Then, push the changes to ReadTheDocs. 
+
+By default, ReadTheDocs generates two documentation websites, "latest" and "stable", where "latest" corresponds to the last commit in the main branch, and "stable" corresponds to the latest tag in the repo. 
