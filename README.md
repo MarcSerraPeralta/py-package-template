@@ -11,6 +11,8 @@ Template for creating a python package repository.
 - [Publishing the package to PyPI](#publish-pypi)
 - [GitHub actions for CI/CD pipeline](#ci-pipeline)
 - [Badges in `README.md`](#readme-badges)
+- [Documentation hosted using ReadTheDocs](#readthedocs)
+- [Git tips](#git-tips)
 
 
 ## Setting up the git worktrees <a name="git-worktrees"/>
@@ -195,7 +197,7 @@ Copy the lines below and change `PACKAGE_NAME` to the correct package name.
 ![PyPI](https://img.shields.io/pypi/v/PACKAGE_NAME?label=pypi%20package)
 ```
 
-## Documentation hosted using ReadTheDocs
+## Documentation hosted using ReadTheDocs <a name="readthedocs"/>
 
 The documentation can be hosted in [ReadTheDocs](https://www.readthedocs.org/) for free if the projects are public. It is very simple to create a new documentation website: just click "Add project" and then follow the steps. In this repo, there is a setup example for documentation with Sphinx in `docs/`. 
 
@@ -207,3 +209,11 @@ inside `docs/` (note that here we are assuming that you have copied the `make.ba
 Then, just open one of the generated HTML files and check that the documentation looks correct locally. Then, push the changes to ReadTheDocs. 
 
 By default, ReadTheDocs generates two documentation websites, "latest" and "stable", where "latest" corresponds to the last commit in the main branch, and "stable" corresponds to the latest tag in the repo. 
+
+
+## Git tips <a name="git-tips"/>
+
+Avoid the `git push --set-upstream ...` with:
+```
+git config push.autoSetupRemote true         # add --global to apply to everything
+```
