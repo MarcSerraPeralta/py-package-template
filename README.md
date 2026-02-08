@@ -12,6 +12,7 @@ Template for creating a python package repository.
 - [GitHub actions for CI/CD pipeline](#ci-pipeline)
 - [Badges in `README.md`](#readme-badges)
 - [Documentation hosted using ReadTheDocs](#readthedocs)
+- [Git tips](#git-tips)
 
 
 ## Setting up the git worktrees <a name="git-worktrees"/>
@@ -208,3 +209,11 @@ inside `docs/` (note that here we are assuming that you have copied the `make.ba
 Then, just open one of the generated HTML files and check that the documentation looks correct locally. Then, push the changes to ReadTheDocs. 
 
 By default, ReadTheDocs generates two documentation websites, "latest" and "stable", where "latest" corresponds to the last commit in the main branch, and "stable" corresponds to the latest tag in the repo. 
+
+
+## Git tips <a name="git-tips"/>
+
+Avoid the `git push --set-upstream ...` with:
+```
+git config push.autoSetupRemote true         # add --global to apply to everything
+```
