@@ -217,3 +217,8 @@ Avoid the `git push --set-upstream ...` with:
 ```
 git config push.autoSetupRemote true         # add --global to apply to everything
 ```
+
+Remove all non-active branches in the local git repository with:
+```
+git branch | grep -v '^[+*]' | grep -vE 'main|master|dev' | xargs -n 1 git branch -D
+```
