@@ -57,7 +57,7 @@ Note that all rules for the same branch described below can be merged into a sin
 
 Below is a quick list of standard settings for the PR configuration. For more information, see the subsections below.
 ```
-Settings > Code and automation > Rules > Rulesetz > New branch ruleset
+Settings > Code and automation > Rules > Rulesets > New branch ruleset
 - Name: pr_main
 - Bypass list: Repository Admin > Always allow
 - Target branches: Default
