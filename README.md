@@ -186,7 +186,7 @@ Secondly, copy the data in `~/.shh/id_rsa`, `~/.ssh/id_ed25519` or the correspon
 
 Note that one needs to update `.github/workflows/ci_pipeline.yaml` so that it knows which ssh encription to use, currently set up to `id_ed25519`. 
 
-To make the CI pipeline run for the PRs to `main`, add the following in the action's YAML file:
+To make the CI pipeline run inside the PRs to `main` (i.e. when opening and when synchronizing them), add the following in the action's YAML file:
 ```
 on:
   push:
