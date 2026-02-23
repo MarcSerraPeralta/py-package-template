@@ -55,6 +55,25 @@ The option `--allow-unrelated-histories` is required because the detached head a
 
 Note that all rules for the same branch described below can be merged into a single rule. 
 
+Below is a quick list of standard settings for the PR configuration. For more information, see the subsections below.
+```
+- Name: pr_main
+- Bypass list: Repository Admin > Always allow
+- Target branches: Default
+- Restrict creations (to avoid creating release/*)
+- Restrict updates (to avoid pushing directly to main)
+- Restrict deletions (to avoid deleting main or release/*)
+- Require a pull request before merging
+    - Required approvals: 1
+    - Dismiss stale pull request approvals when new commits are pushed
+    - Require review from Code Owners
+    - Require conversation resolution before merging
+    - Allowed merge methods: Squash
+- Require status checks to pass
+    - Status checks that are required: e.g. tests (see the action's YAML in this repo)
+- Block force pushes
+```
+
 ### Squash merging <a name="squash-merging"/>
 
 Allow only `squash merging` for the PR. This can be done in `Settings > General > Pull Requests` by unselecting all the options except the `Allow squash merging`. 
