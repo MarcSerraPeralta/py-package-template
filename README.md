@@ -83,6 +83,8 @@ jobs:
 ```
 Then, go to `Settings > Code and automation > Rules > Rulesets` and create a new rule. In the configuration menu for this new rule, under `Rules > Branch rules`, select `Require status checks to pass` and open `Show additional settings`. Select `+ Add checks` and write the (full) name of the build job and select the first item in the dropdown menu. This should lead to the addition of the check with the logo of GitHub and a text saying `GitHub Actions` next to it. Finally, fill the other options of the rule and save it. 
 
+See section [GitHub actions for CI/CD pipeline](#ci-pipeline) to know how to set up the CI pipeline to run when opening and synchronizing a PR. 
+
 ## Managing the requirements for the python package <a name="managing-requirements"/>
 
 The `pyproject.toml` file shouldn't have strict requirements (i.e. specific versions pinned) unless there is a known bug in the current version of the libraries used. In this repo there is an example of `pyproject.toml`. 
