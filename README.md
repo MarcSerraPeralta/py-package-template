@@ -150,7 +150,7 @@ Remember to run `git pull` on `main` to get all the latest changes before buildi
 ### 2. Build the package
 
 ```
-pip install --upgrade pip build
+pip install --upgrade pip build setuptools wheel pkginfo packaging
 python -m build
 ```
 This should output a lot of text and once completed should generate two files in the `dist/` directory. The `.tar.gz` file is a source distribution whereas the `.whl` file is a built distribution. 
