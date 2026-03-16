@@ -258,7 +258,7 @@ By default, ReadTheDocs generates two documentation websites, "latest" and "stab
 
 Avoid the `git push --set-upstream ...` with:
 ```
-git config push.autoSetupRemote true         # add --global to apply to everything
+git config push.autoSetupRemote true         # add --global to apply to everything, add --get to see value
 ```
 
 Remove all non-active branches in the local git repository with:
