@@ -12,6 +12,7 @@ Template for creating a python package repository.
 - [GitHub actions for CI/CD pipeline](#ci-pipeline)
 - [Badges in `README.md`](#readme-badges)
 - [Documentation hosted using ReadTheDocs](#readthedocs)
+- [Jupyter lab and notebook](#jupyter)
 - [Git tips](#git-tips)
 
 
@@ -252,6 +253,23 @@ inside `docs/` (note that here we are assuming that you have copied the `make.ba
 Then, just open one of the generated HTML files and check that the documentation looks correct locally. Then, push the changes to ReadTheDocs. 
 
 By default, ReadTheDocs generates two documentation websites, "latest" and "stable", where "latest" corresponds to the last commit in the main branch, and "stable" corresponds to the latest tag in the repo. 
+
+
+## Jupyter lab and notebook <a name="jupyter"/>
+
+Even though Jupyter notebooks are not part of Python packages, they can be a tool to try out features and debug problems. When working with virtual environments, it is inefficient to have JupyterLab installed on all venvs because it takes quite a lot of disk space. A better option is to use the system/user's JupyterLab installation (so only one is installed) and then create a kernel for each venv. 
+A problem with this solution is that if the kernels are not installed in the correct directory, they are not automatically loaded when creating Jupyter notebooks. The solution is to install the kernel in the same directory as the venv:
+```
+which jupyter-lab           # should point to the user installation
+source <venv>/bin/activate  # activate venv
+which jupyter-lab           # should still point to the user installation (if not, "pip uninstall jupyterlab")
+pip install ipykernel       # install ipykernel in venv for creating a kernel
+python -m ipykernel install --prefix "$VIRTUAL_ENV" --name <venv> # --display-name "(this is optional, by default <venv>)"
+```
+When installing the kernel in the venv, it can be found at `$VIRTUAL_ENV/share/jupyter/kernels/<venv>` and can be listed with
+```
+jupyter kernelspec list
+```
 
 
 ## Git tips <a name="git-tips"/>
