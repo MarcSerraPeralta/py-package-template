@@ -13,6 +13,7 @@ Template for creating a python package repository.
 - [Badges in `README.md`](#readme-badges)
 - [Documentation hosted using ReadTheDocs](#readthedocs)
 - [Jupyter lab and notebook](#jupyter)
+- [SSH tips](#ssh)
 - [Git tips](#git-tips)
 
 
@@ -272,14 +273,42 @@ jupyter kernelspec list
 ```
 
 
+## SSH tips <a name="ssh"/>
+
+To **git clone a GitHub repo through SSH**, one needs to have (1) generated an SSH key on the machine on which to clone the repo, and (2) uploaded the SSH public key to your GitHub account. 
+```
+# check if you already have a key
+ls ~/.ssh/id_ed25519.pub
+# generate the key (if needed)
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# display the public key
+cat ~/.ssh/id_ed25519.pub
+# copy it to GitHub > Profile > Settings > SSH and GPG keys > New SSH key > Add SSH key
+# test it with:
+ssh -T git@github.com
+```
+
+**Avoid having to type the login password in SSH** with:
+```
+# check if you already have a key
+ls ~/.ssh/id_ed25519.pub
+# generate the key (if needed)
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# add the authorized key to the cluster
+ssh-copy-id user@cluster-address
+# test it with
+ssh user@cluster-address
+```
+
+
 ## Git tips <a name="git-tips"/>
 
-Avoid the `git push --set-upstream ...` with:
+**Avoid the `git push --set-upstream ...`** with:
 ```
 git config push.autoSetupRemote true         # add --global to apply to everything, add --get to see value
 ```
 
-Remove all non-active branches in the local git repository with:
+**Remove all non-active branches in the local git repository** with:
 ```
 git branch | grep -v '^[+*]' | grep -vE 'main|master|dev' | xargs -n 1 git branch -D
 ```
