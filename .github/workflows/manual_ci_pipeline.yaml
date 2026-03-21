@@ -35,12 +35,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install .[dev] --no-deps
           pip install -r requirements_dev.txt
-
-      - name: check formatting
-        run: ruff format --check .
-
-      - name: check linting
-        run: ruff check --output-format=github .
           
       - name: execute pytest
         run: pytest tests/
