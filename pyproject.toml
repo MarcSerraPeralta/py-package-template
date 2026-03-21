@@ -40,3 +40,7 @@ dev = [
     "flake8-print", 
     "pytest-flake8",
 ]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "T201", "T203"]
+ignore = ["E741", "E731", "E501"]
