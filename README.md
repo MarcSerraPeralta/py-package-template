@@ -305,7 +305,12 @@ ssh user@cluster-address
 
 **Avoid the `git push --set-upstream ...`** with:
 ```
-git config push.autoSetupRemote true         # add --global to apply to everything, add --get to see value
+git config push.autoSetupRemote true         # add --global to apply to everything, remove "true" to print the current value
+```
+if it still fails, then check the following:
+```
+git config push.default                      # if it does not print anything, then run the command below
+git config push.default current              # add --global to apply to everything
 ```
 
 **Remove all non-active branches in the local git repository** with:
