@@ -267,7 +267,7 @@ which jupyter-lab           # should still point to the user installation (if no
 pip install ipykernel       # install ipykernel in venv for creating a kernel
 python -m ipykernel install --user --name <venv> # --display-name "(this is optional, by default <venv>)"
 ```
-When installing the kernel in the venv, it can be found at `~/.local/share/jupyter/kernels/` and can be listed with
+When installing the kernel in the venv, it can be found at `~/.local/share/jupyter/kernels/<venv>` and can be listed with
 ```
 jupyter kernelspec list
 ```
