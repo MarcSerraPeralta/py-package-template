@@ -265,11 +265,16 @@ which jupyter-lab           # should point to the user installation
 source <venv>/bin/activate  # activate venv
 which jupyter-lab           # should still point to the user installation (if not, "pip uninstall jupyterlab")
 pip install ipykernel       # install ipykernel in venv for creating a kernel
-python -m ipykernel install --prefix "$VIRTUAL_ENV" --name <venv> # --display-name "(this is optional, by default <venv>)"
+python -m ipykernel install --user --name <venv> # --display-name "(this is optional, by default <venv>)"
 ```
-When installing the kernel in the venv, it can be found at `$VIRTUAL_ENV/share/jupyter/kernels/<venv>` and can be listed with
+When installing the kernel in the venv, it can be found at `~/.local/share/jupyter/kernels/` and can be listed with
 ```
 jupyter kernelspec list
+```
+
+To uninstall a kernel, use:
+```
+jupyter kernelspec uninstall <kernelname>
 ```
 
 
