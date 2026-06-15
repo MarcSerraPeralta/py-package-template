@@ -30,15 +30,10 @@ namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 [project.optional-dependencies]
 dev = [
     "pip-tools", 
+    "ruff",
     "pytest", 
-    "scalene", 
-    "black", 
     "sphinx", 
     "sphinx-rtd-theme", 
-    "pytest-black", 
-    "flake8", 
-    "flake8-print", 
-    "pytest-flake8",
 ]
 
 [tool.ruff.lint]
