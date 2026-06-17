@@ -7,7 +7,9 @@ Template for creating a python package repository.
   - [Cloning the repo](#cloning-repo)  
   - [Creating new worktrees](#new-worktrees)
 - [Setting up PR configuration](#pr-configuration)
+- [Managing virtual environments: `virtualenv` and `uv`](#managing-venvs)
 - [Managing the requirements for the python package](#managing-requirements)
+- [Formatter and linter: `ruff`](#ruff)
 - [Publishing the package to PyPI](#publish-pypi)
 - [GitHub actions for CI/CD pipeline](#ci-pipeline)
 - [Badges in `README.md`](#readme-badges)
@@ -115,16 +117,99 @@ Then, go to `Settings > Code and automation > Rules > Rulesets` and create a new
 
 See section [GitHub actions for CI/CD pipeline](#ci-pipeline) to know how to set up the CI pipeline to run when opening and synchronizing a PR. 
 
+
+## Managing virtual environments: `virtualenv` and `uv` <a name="managing-venvs"/>
+
+A lightweight and fast option for creating virtual environments is `virtualenv`:
+```
+# pip install virtualenv
+virtualenv <venv-name>  # --python=<python-dir-to-use>
+
+# activate the venv 
+source <venv-name>/bin/activate
+```
+The built-in tool in Python for creating virtual environments is `venv`, which works
+"the same" as `virtualenv`.
+
+All my venvs are stored in the same directory (`~/virtual_environments`), which
+I can easily activate with my custom command `activate <venv-name>`:
+```
+# .bashrc
+activate() {
+    VENV_BASE="$HOME/virtual_environments"  
+    VENV_PATH="$VENV_BASE/$1"
+
+    if [ -z "$1" ]; then
+        echo "Usage: activate <env_name>"
+        return 1
+    fi
+
+    if [ -f "$VENV_PATH/bin/activate" ]; then
+        source "$VENV_PATH/bin/activate"
+    else
+        echo "Virtual environment '$1' not found in $VENV_BASE"
+        return 1
+    fi
+}
+```
+
+`uv` can be used to install a specific Python version in the system, e.g.:
+```
+uv python install 3.12 # installs in the directory given by "uv python dir"
+```
+and to install packages (faster than `pip`):
+```
+uv pip install ...
+```
+Note that using `uv pip` to install packages in a venv should not be mixed with `pip`.
+
+
 ## Managing the requirements for the python package <a name="managing-requirements"/>
 
-The `pyproject.toml` file shouldn't have strict requirements (i.e. specific versions pinned) unless there is a known bug in the current version of the libraries used. In this repo there is an example of `pyproject.toml`. 
+The `pyproject.toml` file shouldn't have strict requirements (i.e. specific versions pinned) 
+unless there is a known bug in the current version of the libraries used. 
+In this repo there is an example of `pyproject.toml`. 
 
-The specific versions should be pinned in the `requirements.txt` and the `requirements-dev.txt`. This can be done using `pip-tools` and the following commands:
+The specific versions should be pinned in the `requirements.txt` and the `requirements-dev.txt`. 
+This can be done using `pip-tools` or `uv`.
 
+Example of `pip-tools`:
 ```
 # pip install pip-tools
-pip-compile -o requirements.txt pyproject.toml
-pip-compile --extra dev -o requirements_dev.txt pyproject.toml
+pip-compile pyproject.toml -o requirements.txt
+pip-compile pyproject.toml -o requirements_dev.txt --extra dev
+```
+Example of `uv`:
+```
+uv pip compile pyproject.toml -o requirements.txt
+uv pip compile pyproject.toml -o requirements_dev.txt --extra dev
+```
+
+
+## Formatter and linter: `ruff` <a name="ruff"/>
+
+`ruff` is an incredibly fast linter and formatter. 
+Its configuration is specified in the `pyproject.toml` file, e.g.:
+```
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "tab"
+docstring-code-format = true
+
+[tool.ruff.lint]
+extend-select = ["E501"]
+ignore = ["F401"]
+```
+To format files using black formatting:
+```
+ruff format <file/directory>
+```
+To check for linting errors:
+```
+ruff check <file/directory> # --fix to automatically fix some type of errors
 ```
 
 
